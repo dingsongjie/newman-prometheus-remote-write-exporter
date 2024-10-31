@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "fd18ae88-0c34-4aec-8f87-380e31cf317d",
+		"name": "postman-executor-smoke",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "725944"
+	},
+	"item": [
+		{
+			"name": "request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://testkube-test-page-lipsum.pages.dev/",
+					"protocol": "https",
+					"host": [
+						"testkube-test-page-lipsum",
+						"pages",
+						"dev"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+          "pm.request.headers.add({\r",
+          "    key: \"testid\",\r",
+          "    value: \"test-001\" \r",
+          "});\r",
+          "pm.request.headers.add({\r",
+          "    key: \"modules\",\r",
+          "    value: \"aggregatemodel.core.dqy.io\" \r",
+          "});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+        "type": "text/javascript",
+        "exec": [
+          
+        ]
+			}
+		}
+	]
+}

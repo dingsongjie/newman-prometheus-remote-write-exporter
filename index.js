@@ -50,8 +50,15 @@ class PrometheusReporter {
                 console.log('No modules found');
             }
             let value = 0;
-            if (execution.response && execution.response.code < 300 && execution.requestError == null && execution.assertions.find(assertion => assertion.error != null) == null) {
-                value = 1;
+            if (execution.response && execution.response.code < 300 && execution.requestError == null) {
+                if (execution.assertions) {
+                    if (execution.assertions.find(assertion => assertion.error != null) == null) {
+                        value = 1;
+                    }
+                }
+                else {
+                    value = 1;
+                }
             }
 
             this.metrics.push(
@@ -70,7 +77,7 @@ class PrometheusReporter {
 
     async sendMetrics() {
         await this.metrics.forEach(async element => {
-            var config=Object.assign({}, this.remoteWriteConfig);
+            var config = Object.assign({}, this.remoteWriteConfig);
             config.labels = element.labels;
             await pushMetrics(
                 {
