@@ -1,0 +1,31 @@
+name: Release to npm
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支的推送
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # 指定 Node.js 版本
+          registry-url: 'https://registry.npmjs.org'  # npm 注册表地址
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Package and publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESSTOKEN }}  # 使用 GitHub Secrets 存储 npm 令牌
+        run: |
+          npm pack  # 打包项目
+          npm publish --access public  # 发布到 npm
+
