@@ -1,0 +1,19 @@
+{
+  "name": "newman-reporter-prometheus-remote-write",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "postinstall": "patch-package"
+  },
+  "author": "dingsongjie",
+  "license": "MIT",
+  "dependencies": {
+    "newman": "^6.2.1",
+    "newman-reporter-prometheus-remote-write": "file:",
+    "node-fetch": "^2.7.0",
+    "patch-package": "^8.0.0",
+    "prometheus-remote-write": "0.4.1"
+  }
+}
